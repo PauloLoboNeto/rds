@@ -1,4 +1,4 @@
-name: Create PR to branch main on Push to Feature Branch
+name: Create PR to branch main
 
 on:
   push:
