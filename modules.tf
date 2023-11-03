@@ -6,8 +6,6 @@ module "network" {
 module "rds" {
     source       = "./modules/rds"
     aws_region = var.aws_region
-    username = var.username
-    password = var.password
     subnet_ids =  [module.network.public_subnet_1a.id,module.network.public_subnet_1b.id]
     vpc_security_group_ids = [module.network.security_id.id]
 }
