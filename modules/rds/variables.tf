@@ -3,14 +3,6 @@ variable "aws_region" {
     type = string
 }
 
-variable "username" {
-    type = string
-}
-
-variable "password" {
-    type = string
-}
-
 variable "subnet_ids" {
     type = list(string)
 }
@@ -18,4 +10,5 @@ variable "subnet_ids" {
 variable "vpc_security_group_ids" {
     type = list(string)
 }
+
 

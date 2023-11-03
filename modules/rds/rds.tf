@@ -1,12 +1,16 @@
+locals {
+    secret_value = jsondecode(data.aws_secretsmanager_secret_version.current.secret_string)
+}
+
 resource "aws_db_instance" "postgresdb" {
   allocated_storage    = 20
-  db_name              = "postgres"
+  db_name              = local.secret_value["dbname"]
   storage_type         = "gp2"
-  engine               = "postgres"
+  engine               = local.secret_value["engine"]
   engine_version       = "15.3"
   instance_class       = "db.t3.micro"
-  username             = var.username
-  password             = var.password
+  username             = local.secret_value["username"]
+  password             = local.secret_value["password"]
   parameter_group_name = "default.postgres15"
   skip_final_snapshot  = true
   multi_az             = false
