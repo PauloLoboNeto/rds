@@ -2,6 +2,15 @@ locals {
     secret_value = jsondecode(data.aws_secretsmanager_secret_version.current.secret_string)
 }
 
+resource "aws_db_subnet_group" "subnets_rds" {
+  name       = "main"
+  subnet_ids = var.subnet_ids
+
+  tags = {
+    Name = "My DB subnet group"
+  }
+}
+
 resource "aws_db_instance" "postgresdb" {
   allocated_storage    = 20
   db_name              = local.secret_value["dbname"]
@@ -21,14 +30,5 @@ resource "aws_db_instance" "postgresdb" {
     create = "3h"
     delete = "3h"
     update = "3h"
-  }
-}
-
-resource "aws_db_subnet_group" "subnets_rds" {
-  name       = "main"
-  subnet_ids = var.subnet_ids
-
-  tags = {
-    Name = "My DB subnet group"
   }
 }
