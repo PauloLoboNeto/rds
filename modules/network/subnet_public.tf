@@ -1,13 +1,13 @@
 resource "aws_subnet" "subnet_public_1" {
   vpc_id                  = aws_vpc.rds_vpc.id
-  cidr_block              = "10.1.1.0/24"
+  cidr_block              = "10.1.0.0/25"
   availability_zone       =  format("%sa", var.aws_region)
   map_public_ip_on_launch = true
 }
 
 resource "aws_subnet" "subnet_public_2" {
   vpc_id                  = aws_vpc.rds_vpc.id
-  cidr_block              = "10.1.2.0/24"
+  cidr_block              = "10.1.0.128/25"
   availability_zone       =  format("%sb", var.aws_region)
   map_public_ip_on_launch = true
 }
